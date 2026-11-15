@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Application Details - Internova</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        <h2>Internova</h2>
+
+        <nav>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('manage_students') }}">Manage Students</a>
+            <a href="{{ url_for('manage_companies') }}">Manage Companies</a>
+            <a href="{{ url_for('manage_internships') }}">Manage Internships</a>
+            <a href="{{ url_for('manage_applications') }}" class="active">Applications</a>
+            <a href="#">Reset Password</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <h1>Application Details</h1>
+        <p>Review the information submitted by the student.</p>
+
+        <div class="form-container">
+
+            <label>Student Name</label>
+            <p>{{ application.student }}</p>
+
+            <label>Company</label>
+            <p>{{ application.company }}</p>
+
+            <label>Internship Position</label>
+            <p>{{ application.position }}</p>
+
+            <label>Application Date</label>
+            <p>{{ application.date }}</p>
+
+            <label>Application Status</label>
+            <p>{{ application.status }}</p>
+
+            <div class="form-buttons">
+
+               {% if application.status == 'Pending' %}
+
+                 <form method="POST" action="{{ url_for('update_application', application_id=application.id, status='Approved') }}">
+                   <button type="submit" class="primary-btn">
+                      Approve Application
+                   </button>
+                 </form>
+
+                 <form method="POST" action="{{ url_for('update_application', application_id=application.id, status='Rejected') }}">
+                    <button type="submit" class="cancel-btn">
+                      Reject Application
+                    </button>
+                 </form>
+
+                {% endif %}
+
+                <a href="{{ url_for('manage_applications') }}" class="cancel-btn">
+                 Back to Applications
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

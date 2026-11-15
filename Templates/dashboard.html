@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Internova | Admin Dashboard</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+</head>
+
+<body class="dashboard-body">
+
+    <div class="dashboard-container">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <h2>INTERNOVA</h2>
+
+            <p class="admin-label">ADMIN PANEL</p>
+
+            <nav>
+                <a href="{{ url_for('dashboard') }}" class="active">Dashboard</a>
+                <a href="{{ url_for('manage_students') }}">Manage Students</a>
+                <a href="{{ url_for('manage_companies') }}">Manage Companies</a>
+                <a href="{{ url_for('manage_internships') }}">Manage Internships</a>
+                <a href="{{ url_for('manage_applications') }}">Applications</a>
+                <a href="{{ url_for('reset_password') }}">Reset Password</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </nav>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- HEADER -->
+            <header class="top-header">
+
+                <div>
+                    <h1>Admin Dashboard</h1>
+                    <p>Welcome back, Administrator!</p>
+                </div>
+
+                <div class="admin-profile">
+                    <span>Admin</span>
+                </div>
+
+            </header>
+
+
+            <!-- STATISTICS -->
+            <section class="stats-container">
+
+                <div class="stat-card">
+                    <h3>Total Students</h3>
+                    <p>{{ stats.students }}</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Companies</h3>
+                    <p>{{ stats.companies }}</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Internships</h3>
+                    <p>{{ stats.internships }}</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Applications</h3>
+                    <p>{{ stats.applications }}</p>
+                </div>
+
+            </section>
+
+
+            <!-- RECENT APPLICATIONS -->
+            <section class="applications-section">
+
+                <h2>Recent Internship Applications</h2>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Company</th>
+                                <th>Position</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for application in recent_applications %}
+
+                            <tr>
+                                <td>{{ application.student }}</td>
+                                <td>{{ application.company }}</td>
+                                <td>{{ application.position }}</td>
+                                <td>
+                                    <span class="status">
+                                        {{ application.status }}
+                                    </span>
+                                </td>
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- QUICK ACTIONS -->
+            <section class="quick-actions">
+
+                <h2>Quick Actions</h2>
+
+                <div class="action-container">
+
+                    <a href="{{ url_for('add_student') }}" class="action-card">
+                        + Add Student
+                    </a>
+
+                    <a href="{{ url_for('add_company') }}" class="action-card">
+                        + Register Company
+                    </a>
+
+                    <a href="{{ url_for('add_internship') }}" class="action-card">
+                        + Add Internship
+                    </a>
+                    <a href="{{ url_for('reset_password') }}" class="action-card">
+                        <h3>Reset Password</h3>
+                        <p>Change your administrator password.</p>
+                    </a>
+        
+
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

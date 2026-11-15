@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Company | Internova</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        <h2>Internova</h2>
+
+        <nav>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('manage_students') }}">Manage Students</a>
+            <a href="{{ url_for('manage_companies') }}" class="active">Manage Companies</a>
+            <a href="#">Manage Internships</a>
+            <a href="#">Applications</a>
+            <a href="#">Reset Password</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <h1>Add New Company</h1>
+        <p>Register a company on the Internova platform.</p>
+
+        <div class="form-container">
+
+            <form method="POST">
+
+                <label>Company Name</label>
+                <input type="text" name="name" placeholder="Enter company name" required>
+
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="Enter company email" required>
+
+                <label>Industry</label>
+                <input type="text" name="industry" placeholder="e.g. Information Technology" required>
+
+                <label>Account Status</label>
+                <select name="status" required>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+
+                <div class="form-buttons">
+                    <button type="submit" class="primary-btn">Save Company</button>
+
+                    <a href="{{ url_for('manage_companies') }}" class="cancel-btn">
+                        Cancel
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>
